@@ -24,17 +24,24 @@ const Lightning = () => {
       <Modal visible={showModal} animationType="slide" transparent>
         <View style={specificStyles.modalContainer}>
           <ColorPicker
-            style={{ width: "20%" }}
+            style={specificStyles.colorPickerStyle}
             value="red"
             onComplete={onSelectColor}
           >
-            <Preview hideInitialColor={true} />
-            <Panel3 style={{ marginTop: "10px" }} />
+            <Preview
+              hideInitialColor={true}
+              style={specificStyles.previewMargin}
+            />
+            <Panel3 style={specificStyles.colorPanelMargin} />
           </ColorPicker>
 
           <Pressable
             onPress={() => setShowModal(false)}
-            style={[styles.controlButton, specificStyles.marginOnButton]}
+            style={[
+              styles.controlButton,
+              specificStyles.marginOnButton,
+              specificStyles.modalButton,
+            ]}
           >
             <Text style={styles.buttonText}>Ok</Text>
           </Pressable>
@@ -54,11 +61,25 @@ export default Lightning;
 
 const specificStyles = {
   marginOnButton: {
-    margin: "25px",
+    marginHorizontal: "25px",
+    marginVertical: "15px",
   },
   modalContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  previewMargin: {
+    marginTop: "40px",
+  },
+  colorPanelMargin: {
+    marginTop: "10px",
+  },
+  colorPickerStyle: {
+    width: "20%",
+    marginTop: "10px",
+  },
+  modalButton: {
+    width: "200px",
   },
 };

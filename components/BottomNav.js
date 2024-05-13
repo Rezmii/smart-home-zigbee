@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 const BottomNav = ({ activeTab, onChangeTab }) => {
   const handleTabPress = (tabName) => {
@@ -9,27 +9,27 @@ const BottomNav = ({ activeTab, onChangeTab }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[styles.tab, activeTab === 'ControlPanel' && styles.activeTab]}
-        onPress={() => handleTabPress('ControlPanel')}
+        style={[styles.tab, activeTab === "ControlPanel" && styles.activeTab]}
+        onPress={() => handleTabPress("ControlPanel")}
       >
         <Text>Control Panel</Text>
       </TouchableOpacity>
-      
+
       <TouchableOpacity
-        style={[styles.tab, activeTab === 'Notifications' && styles.activeTab]}
-        onPress={() => handleTabPress('Notifications')}
+        style={[styles.tab, activeTab === "Notifications" && styles.activeTab]}
+        onPress={() => handleTabPress("Notifications")}
       >
         <Text>Powiadomienia</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.tab, activeTab === 'Information' && styles.activeTab]}
-        onPress={() => handleTabPress('Information')}
+        style={[styles.tab, activeTab === "Information" && styles.activeTab]}
+        onPress={() => handleTabPress("Information")}
       >
         <Text>Informacje</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.tab, activeTab === 'Settings' && styles.activeTab]}
-        onPress={() => handleTabPress('Settings')}
+        style={[styles.tab, activeTab === "Settings" && styles.activeTab]}
+        onPress={() => handleTabPress("Settings")}
       >
         <Text>Ustawienia</Text>
       </TouchableOpacity>
@@ -39,20 +39,25 @@ const BottomNav = ({ activeTab, onChangeTab }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     borderTopWidth: 1,
-    borderTopColor: '#ccc',
+    borderTopColor: "#ccc",
     paddingVertical: 10,
   },
   tab: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
+    marginHorizontal: "10px",
+    marginVertical: "0",
+    paddingTop: "5px",
+    paddingVertical: "3px",
+    marginHorizontal: "10px",
   },
   activeTab: {
-    borderBottomWidth: 2,
-    borderBottomColor: 'blue',
+    borderBottomWidth: "3px",
+    borderBottomColor: "#3498db",
   },
 });
 

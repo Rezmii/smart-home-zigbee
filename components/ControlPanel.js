@@ -5,9 +5,8 @@ import { useNavigation } from "@react-navigation/native";
 const ControlPanel = () => {
   const navigation = useNavigation();
 
-  const openNewTab = () => {
-    console.log("test");
-    navigation.navigate("Lightning"); // Nawiguj do nowego komponentu
+  const openNewTab = (tab) => {
+    navigation.navigate(tab);
   };
 
   return (
@@ -17,15 +16,25 @@ const ControlPanel = () => {
         <TouchableOpacity
           style={styles.controlButton}
           onPress={() => {
-            openNewTab();
+            openNewTab("Oswietlenie");
           }}
         >
           <Text style={styles.buttonText}>Oświetlenie</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.controlButton}>
+        <TouchableOpacity
+          style={styles.controlButton}
+          onPress={() => {
+            openNewTab("Gniazdka elektryczne");
+          }}
+        >
           <Text style={styles.buttonText}>Gniazdka elektryczne</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.controlButton}>
+        <TouchableOpacity
+          style={styles.controlButton}
+          onPress={() => {
+            openNewTab("Inne urzadzenie");
+          }}
+        >
           <Text style={styles.buttonText}>Inne urzadzenie</Text>
         </TouchableOpacity>
       </View>
