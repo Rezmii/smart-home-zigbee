@@ -1,20 +1,34 @@
 import * as React from "react";
-import { List } from "react-native-paper";
+import { View } from "react-native";
+import { Button, Menu, PaperProvider } from "react-native-paper";
 
 const OtherDevices = () => {
-  const [expanded, setExpanded] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
 
-  const handlePress = () => setExpanded(!expanded);
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
+
   return (
-    <List.Accordion
-      title="Controlled Accordion"
-      left={(props) => <List.Icon {...props} icon="folder" />}
-      expanded={expanded}
-      onPress={handlePress}
-    >
-      <List.Item title="First item" />
-      <List.Item title="Second item" />
-    </List.Accordion>
+    <PaperProvider>
+      <View
+        style={{
+          paddingTop: 50,
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <Menu
+          visible={visible}
+          onDismiss={closeMenu}
+          anchor={<Button onPress={openMenu}>Show menu</Button>}
+        >
+          <Menu.Item onPress={() => {}} title="Item 1" />
+          <Menu.Item onPress={() => {}} title="Item 2" />
+          <Menu.Item onPress={() => {}} title="Item 3" />
+        </Menu>
+      </View>
+    </PaperProvider>
   );
 };
 

@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { ElectricalOutlet } from "./components/ElectricalOutlet";
 import OtherDevices from "./components/OtherDevices";
+import DevicesList from "./components/DevicesList";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,8 @@ export default function App() {
   return (
     <View style={[styles.container, { paddingTop: paddingTopValue }]}>
       <Header />
+      <DevicesList />
+
       <NavigationContainer>
         {activeTab === "ControlPanel" && (
           <Stack.Navigator initialRouteName="ControlPanel">
