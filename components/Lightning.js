@@ -1,11 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text, Modal, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  Pressable,
+  useWindowDimensions,
+} from "react-native";
 import { styles } from "./ControlPanel";
 import ColorPicker, { Panel3, Preview } from "reanimated-color-picker";
 import getData from "../services/getData";
 
 const Lightning = () => {
+  const windowWidth = useWindowDimensions().width;
   const [showModal, setShowModal] = useState(false);
 
   const onSelectColor = ({ hex }) => {
@@ -15,7 +22,11 @@ const Lightning = () => {
   return (
     <View>
       <Pressable
-        style={[styles.controlButton, specificStyles.marginOnButton]}
+        style={[
+          styles.controlButton,
+          specificStyles.marginOnButton,
+          { margin: windowWidth < 500 ? 10 : 200 },
+        ]}
         onPress={() => setShowModal(true)}
       >
         <Text style={styles.buttonText}>Wybierz kolor</Text>
@@ -24,7 +35,10 @@ const Lightning = () => {
       <Modal visible={showModal} animationType="slide" transparent>
         <View style={specificStyles.modalContainer}>
           <ColorPicker
-            style={specificStyles.colorPickerStyle}
+            style={
+              (specificStyles.colorPickerStyle,
+              { width: windowWidth < 500 ? "50%" : "20%" })
+            }
             value="red"
             onComplete={onSelectColor}
           >
@@ -48,7 +62,11 @@ const Lightning = () => {
         </View>
       </Modal>
       <Pressable
-        style={[styles.controlButton, specificStyles.marginOnButton]}
+        style={[
+          styles.controlButton,
+          specificStyles.marginOnButton,
+          { margin: windowWidth < 500 ? 10 : 200 },
+        ]}
         onPress={() => getData()}
       >
         <Text style={styles.buttonText}>Pokaz kolor</Text>
@@ -76,7 +94,6 @@ const specificStyles = {
     marginTop: "10px",
   },
   colorPickerStyle: {
-    width: "20%",
     marginTop: "10px",
   },
   modalButton: {

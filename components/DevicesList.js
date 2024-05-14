@@ -1,11 +1,24 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { List } from "react-native-paper";
+import getDeviceList from "../services/getDeviceList";
 
 const DevicesList = () => {
   const [expanded, setExpanded] = React.useState(false);
+  const [devicesList, setDevicesList] = useState([{}]);
 
-  const handlePress = () => setExpanded(!expanded);
+  const handlePress = () => {
+    setExpanded(!expanded);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDeviceList();
+      setDevicesList(data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <View>
@@ -14,8 +27,9 @@ const DevicesList = () => {
         expanded={expanded}
         onPress={handlePress}
       >
-        <List.Item title="First item" />
-        <List.Item title="Second item" />
+        {devicesList.map((device, index) => (
+          <List.Item key={index} title={device.friendly_name} />
+        ))}
       </List.Accordion>
     </View>
   );
