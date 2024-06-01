@@ -5,7 +5,14 @@ import getDeviceList from "../services/getDeviceList";
 
 const DevicesList = () => {
   const [expanded, setExpanded] = React.useState(false);
-  const [devicesList, setDevicesList] = useState([{}]);
+  const [devicesList, setDevicesList] = useState([
+    {
+      title: "First",
+    },
+    {
+      title: "Second",
+    },
+  ]);
 
   const handlePress = () => {
     setExpanded(!expanded);
@@ -13,12 +20,20 @@ const DevicesList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getDeviceList();
-      setDevicesList(data);
+      try {
+        const data = await getDeviceList();
+        setDevicesList(data);
+      } catch (error) {
+        console.error("Wystąpił błąd podczas pobierania danych:", error);
+      }
     };
 
     fetchData();
   }, []);
+
+  if (devicesList === null) {
+    return null;
+  }
 
   return (
     <View>
@@ -28,7 +43,7 @@ const DevicesList = () => {
         onPress={handlePress}
       >
         {devicesList.map((device, index) => (
-          <List.Item key={index} title={device.friendly_name} />
+          <List.Item key={index} title={device.title} />
         ))}
       </List.Accordion>
     </View>
