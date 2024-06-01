@@ -5,14 +5,7 @@ import getDeviceList from "../services/getDeviceList";
 
 const DevicesList = () => {
   const [expanded, setExpanded] = React.useState(false);
-  const [devicesList, setDevicesList] = useState([
-    {
-      title: "First",
-    },
-    {
-      title: "Second",
-    },
-  ]);
+  const [devicesList, setDevicesList] = useState(null);
 
   const handlePress = () => {
     setExpanded(!expanded);
@@ -39,7 +32,7 @@ const DevicesList = () => {
         expanded={expanded}
         onPress={handlePress}
       >
-        {devicesList === null ? (
+        {!devicesList ? (
           <List.Item title="Brak aktywnych urządzeń" />
         ) : (
           devicesList.map((device, index) => (
