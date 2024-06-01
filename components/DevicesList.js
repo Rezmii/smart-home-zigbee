@@ -31,10 +31,6 @@ const DevicesList = () => {
     fetchData();
   }, []);
 
-  if (devicesList === null) {
-    return null;
-  }
-
   return (
     <View>
       <List.Accordion
@@ -42,9 +38,13 @@ const DevicesList = () => {
         expanded={expanded}
         onPress={handlePress}
       >
-        {devicesList.map((device, index) => (
-          <List.Item key={index} title={device.title} />
-        ))}
+        {devicesList === null ? (
+          <List.Item title="Brak aktywnych urządzeń" />
+        ) : (
+          devicesList.map((device, index) => (
+            <List.Item key={index} title={device.title} />
+          ))
+        )}
       </List.Accordion>
     </View>
   );
