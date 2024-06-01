@@ -10,13 +10,17 @@ import {
 import { styles } from "./ControlPanel";
 import ColorPicker, { Panel3, Preview } from "reanimated-color-picker";
 import getData from "../services/getData";
+import sendColorToServer from "../services/sendColorToServer";
 
 const Lightning = () => {
   const windowWidth = useWindowDimensions().width;
   const [showModal, setShowModal] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(null);
 
   const onSelectColor = ({ hex }) => {
     console.log(hex);
+    setSelectedColor(hex);
+    sendColorToServer(hex);
   };
 
   return (
@@ -69,7 +73,7 @@ const Lightning = () => {
         ]}
         onPress={() => getData()}
       >
-        <Text style={styles.buttonText}>Pokaz kolor</Text>
+        <Text style={styles.buttonText}>Pokaz aktualny kolor</Text>
       </Pressable>
     </View>
   );

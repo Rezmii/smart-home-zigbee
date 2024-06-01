@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { List } from "react-native-paper";
 import getDeviceList from "../services/getDeviceList";
 
@@ -35,6 +35,7 @@ const DevicesList = () => {
     <View>
       <List.Accordion
         title="Lista aktywnych urządzeń"
+        titleStyle={styles.accordionTitle}
         expanded={expanded}
         onPress={handlePress}
       >
@@ -49,5 +50,11 @@ const DevicesList = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  accordionTitle: {
+    color: "black",
+  },
+});
 
 export default DevicesList;
