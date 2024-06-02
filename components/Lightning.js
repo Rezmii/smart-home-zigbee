@@ -12,17 +12,19 @@ import ColorPicker, { Panel3, Preview } from "reanimated-color-picker";
 import getData from "../services/getData";
 import sendColorToServer from "../services/sendColorToServer";
 
-const Lightning = () => {
+const Lightning = ({ device, onLightningData }) => {
   const windowWidth = useWindowDimensions().width;
   const [showModal, setShowModal] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedDevice, setSelectedDevice] = useState(Object);
 
   const onSelectColor = ({ hex }) => {
     console.log(hex);
+    console.log(selectedDevice);
     setSelectedColor(hex);
-    sendColorToServer(hex);
+    sendColorToServer(hex, selectedDevice);
+    onLightningData(hex);
   };
-
   return (
     <View>
       <Pressable
