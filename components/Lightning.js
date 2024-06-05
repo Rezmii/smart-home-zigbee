@@ -20,13 +20,13 @@ const Lightning = ({ device, onLightningData }) => {
 
   const onSelectColor = ({ hex }) => {
     console.log(hex);
-    console.log(selectedDevice);
+    console.log(device);
     setSelectedColor(hex);
-    sendColorToServer(hex, selectedDevice);
+    sendColorToServer(hex, device);
     onLightningData(hex);
   };
   return (
-    <View>
+    <View style={specificStyles.flexView}>
       <Pressable
         style={[
           styles.controlButton,
@@ -104,5 +104,8 @@ const specificStyles = {
   },
   modalButton: {
     width: "200px",
+  },
+  flexView: {
+    display: "flex",
   },
 };

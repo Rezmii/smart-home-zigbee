@@ -1,6 +1,8 @@
+export const url = "http://192.168.11.6:3020";
+
 const getDeviceList = async () => {
   try {
-    const response = await fetch("http://localhost:3020/devices/all", {
+    const response = await fetch(url + "/devices/all", {
       method: "GET",
     });
     if (!response.ok) {
